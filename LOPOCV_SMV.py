@@ -5,11 +5,8 @@ Created on Fri Sep  4 10:14:48 2026
 
 @author: Joseph Hadous
 
-update package as needed with
-pip install '/Users/hh1850/Dropbox/Hady_and_Joe/joe_package'
 """
 import numpy as np
-import matplotlib.pyplot as plt
 import os
 import pandas as pd
 from sklearn.utils import resample
@@ -24,8 +21,6 @@ from sklearn.model_selection import (
 from sklearn.svm import LinearSVC
 
 
-plt.rcParams["savefig.dpi"] = 300
-plt.rcParams["savefig.bbox"] = "tight"
 base_dir = "/Users/hh1850/Dropbox/COLD_FC_SVM_CODE/"
 
 
@@ -36,10 +31,10 @@ def getWarm(d):
 def getCool(d):
     return pd.concat([d[168:208], d[456:496]])
 
-
+csv_folder = "/Path/To/CSVs/"
 csv_list = [
-    pd.read_csv("COLDFMRI_csv/" + d)
-    for d in os.listdir("COLDFMRI_csv")
+    pd.read_csv(csv_folder+ d)
+    for d in os.listdir(csv_folder)
     if ".csv" in d
 ]
 X = np.concatenate(
