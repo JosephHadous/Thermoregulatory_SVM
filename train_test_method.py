@@ -17,7 +17,7 @@ from sklearn.svm import LinearSVC
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import StratifiedKFold
 from sklearn.base import clone
-from scipy.stats import false_discovery_control, ttest_1samp
+from scipy.stats import ttest_1samp
 
 # %% Data Processing
 
@@ -200,7 +200,7 @@ for res in boot_res:
 
 ws = np.mean(weights, 0)
 _, ps = ttest_1samp(weights, 0)
-p = false_discovery_control(ps) < 0.05
+p = ps < (0.05/n_feats)
 
 # Feature weights only have relative meaning so we should still
 # consider the full distribution of weights for the top 99%
